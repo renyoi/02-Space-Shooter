@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/stars.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/redlion.png" type="Texture" id=2]
+[ext_resource path="res://Player/player.gd" type="Script" id=3]
+[ext_resource path="res://HUD/Game.gd" type="Script" id=4]
+[ext_resource path="res://Enemy/enemies.gd" type="Script" id=5]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=6]
+[ext_resource path="res://Meteor/meteors.gd" type="Script" id=7]
+[ext_resource path="res://Assets/ARCADECLASSIC.TTF" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+outline_size = 1
+outline_color = Color( 0.00392157, 0.101961, 0.929412, 1 )
+use_mipmaps = true
+font_data = ExtResource( 8 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="background" type="Sprite" parent="."]
+scale = Vector2( 0.792303, 0.792303 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+margin_left = -1.99997
+margin_top = 3.87122
+margin_right = 1054.0
+margin_bottom = 43.8712
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="HUD"]
+margin_left = 15.0
+margin_top = 3.0
+margin_right = 115.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 1 )
+text = "Score: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bullets" type="Node2D" parent="."]
+
+[node name="enemies" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="meteor" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="explosions" type="Node2D" parent="."]
+
+[node name="player" type="KinematicBody2D" parent="."]
+collision_layer = 2
+collision_mask = 40
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="player"]
+position = Vector2( 529.565, 556.565 )
+scale = Vector2( 0.425691, 0.425691 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player"]
+position = Vector2( 529.565, 556.565 )
+scale = Vector2( 0.425691, 0.425691 )
+polygon = PoolVector2Array( 53, -97.5, 53, -95.7, 61.9, -85, 64.8, -85, 76, -74.9, 76, -72.5, 81, -63.5, 81, -58, 83.8, -36, 97, -17.6, 97, -14, 96, 33, 94.3, 33, 88.3, 46, 86.8, 46, 79, 53.8, 79, 58.6, 71.1, 71, 44.8, 71, 29, 92, 24.7, 92, 17.7, 98, 12.9, 98, -25, 94.8, -25, 93, -40, 81, -40, 78.5, -44.1, 71, -50.1, 71, -51.5, 68.9, -52.9, 71, -67, 71, -67, 69.5, -74, 67.5, -74, 65.4, -79.4, 51, -81.6, 51, -90, 45, -90, 42.4, -97.9, 22, -96, 22, -96, -23, -94, -23, -83, -37.7, -83, -41.1, -81.9, -61, -80.5, -61, -75.5, -78, -74, -78, -71, -82, -68.7, -82, -48.8, -100, -35.9, -100, -26.9, -85, -26.1, -85, -8.3, -90, 11, -90, 11, -88.7, 26.4, -85.4, 30.6, -96, 32.5, -96, 38, -99.1, 38, -100, 43.9, -100 )
